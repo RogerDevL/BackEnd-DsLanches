@@ -3,13 +3,11 @@ const Pedido = require("../models/Pedido");
 const pedidoService ={
     create: async (pedido) =>{
         try {
-            return await Pedido.create({
-                nome: pedido.nome,
-                telefone: pedido.telefone,
-                quantidade: pedido.quantidade,
-                pedidos: pedido.pedidos
-            });
+          // console.log(pedido)
+          return await Pedido.create(pedido);
+        
         } catch (error) {
+          // console.error(error);
             throw error("Ocorreu um erro ao criar pedido.");
         }
     },
@@ -23,14 +21,12 @@ const pedidoService ={
             return null;
         }
 
-        await pedido.update({
-            nome: pedido.nome,
-            telefone: pedido.telefone,
-            quantidade: pedido.quantidade,
-            pedidos: pedido.pedidos
-        });
+            await pedido.update(pedidoToUpdate); // update atualizar
+            await pedido.save();
+            return pedido;
 
-        return await pedido.save();
+        
+    
         } catch (error) {
             throw error("Ocorreu um erro ao criar admin.");
         }

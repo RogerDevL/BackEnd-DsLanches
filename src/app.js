@@ -14,6 +14,7 @@ app.use('/api', router);
 sequelize.authenticate()
     .then(()=>{
         console.log("Conexao com o banco de dados deu certo")
+        sequelize.sync();
 })
     .catch(err =>{
         console.log("Erro ao conectar no banco:", err)

@@ -5,8 +5,8 @@ const pedidoController = {
     create: async (req, res) =>{
         try {
 
-            const pedido = await pedidoService.create(req.body);    
-
+            const pedido = await pedidoService.create(req.body);
+            // console.log(pedido)
             return res.status(200).json({msg:"Pedido criado com sucesso.", pedido})
 
         } catch (error) {

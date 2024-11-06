@@ -18,7 +18,13 @@ const Pedido = sequelize.define('Pedido', {
     pedidos:{
         type: DataTypes.STRING,
         allowNull: false
+    },
+    observacao:{
+        type:DataTypes.STRING,
+        allowNull:false
     }
 },{timestamps:true});
+
+
 
 module.exports = Pedido;
