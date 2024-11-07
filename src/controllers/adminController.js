@@ -56,6 +56,7 @@ const adminController ={
             }
             return res.status(200).json({msg:"Admin deletado com sucesso!", admin});
         } catch (error) {
+          console.log(error)
             return res.status(500).json({msg:"Contate o Roger."})
         }
     },

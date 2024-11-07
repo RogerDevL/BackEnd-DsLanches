@@ -18,6 +18,7 @@ const adminService = {
     delete: async (id) => {
         try {
           const admin = await Admin.findByPk(id);
+          console.log(admin)
           if (!admin) {
             return null;
           }
@@ -25,6 +26,7 @@ const adminService = {
           return admin;
           
         } catch (error) {
+          console.log(error)
           throw error("Ocorreu um erro ao deletar pedido.");
         }
       },
