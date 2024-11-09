@@ -1,16 +1,16 @@
 const {Router} = require('express');
 const pedidoController = require('../controllers/pedidoController');
-const { validateAdmin, validateAdminId } = require('../middlewares/ValidateAdmin');
+const { validatePedido, validatePedidoId } = require('../middlewares/ValidatePedido');
 const router = Router();
 
 
-router.post('/', validateAdmin, pedidoController.create);
+router.post('/', validatePedido, pedidoController.create);
 
-router.put('/:id', validateAdmin, validateAdminId, pedidoController.update);
+router.put('/:id', validatePedido, validatePedidoId, pedidoController.update);
 
-router.delete('/:id', validateAdminId, pedidoController.delete);
+router.delete('/:id', validatePedidoId, pedidoController.delete);
 
-router.get('/:id', validateAdminId, pedidoController.getOne);
+router.get('/:id', validatePedidoId, pedidoController.getOne);
 
 router.get('/', pedidoController.getAll);
 

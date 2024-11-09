@@ -41,7 +41,11 @@ const pedidoController = {
     },
     getAll: async (req, res) =>{
         try {
+            console.log("dddddddddddddddddddddd");
+            
             const pedido = await pedidoService.getAll();
+
+            console.log(pedido)
             if(!pedido){
                 return res.status(404).json({ msg:"Pedidos não encontrados"});
             }

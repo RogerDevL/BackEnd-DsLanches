@@ -1,7 +1,7 @@
 const validatePedido = (req, res, next) => {
-    const {nome, telefone, quantidade, pedido, observacao} = req.body;
+    const {nome, telefone, quantidade, pedidos, observacao} = req.body;
 
-    if(!nome || !telefone || !quantidade || !pedido || !observacao){
+    if(!nome || !telefone || !quantidade || !pedidos || !observacao){
         return res.status(400).json({
             msg:"Campos inválidos"
         })

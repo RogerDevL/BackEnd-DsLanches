@@ -1,68 +1,68 @@
 const Pedido = require("../models/Pedido");
 
-const pedidoService ={
-    create: async (pedido) =>{
-        try {
-          // console.log(pedido)
-          return await Pedido.create(pedido);
-        
-        } catch (error) {
-          // console.error(error);
-            throw error("Ocorreu um erro ao criar pedido.");
-        }
-    },
+const pedidoService = {
+  create: async (pedido) => {
+    try {
+      // console.log(pedido)
+      return await Pedido.create(pedido);
+    } catch (error) {
+      // console.error(error);
+      throw error("Ocorreu um erro ao criar pedido.");
+    }
+  },
 
-    update: async (id, pedidoToUpdate) =>{
-        try {
+  update: async (id, pedidoToUpdate) => {
+    try {
+      const pedido = await Pedido.findByPk(id);
 
-        const pedido = await Pedido.findByPk(id);
+      if (!pedido) {
+        return null;
+      }
 
-        if(!pedido){
-            return null;
-        }
+      await pedido.update(pedidoToUpdate); // update atualizar
+      await pedido.save();
+      return pedido;
+    } catch (error) {
+      throw error("Ocorreu um erro ao criar admin.");
+    }
+  },
+  getById: async (id) => {
+    try {
+      const pedido = await Pedido.findByPk(id);
 
-            await pedido.update(pedidoToUpdate); // update atualizar
-            await pedido.save();
-            return pedido;
+      if (!pedido) {
+        return null;
+      }
+      return pedido;
+    } catch (error) {
+      throw error("Ocorreu um erro ao buscar pedido.");
+    }
+  },
+  getAll: async () => {
+    try {
+      const pedido = await Pedido.findAll();
+      console.log(pedido);
+      if (!pedido) {
+        return null;
+      }
 
-        
-    
-        } catch (error) {
-            throw error("Ocorreu um erro ao criar admin.");
-        }
-        
-    },
-    getById: async (id) =>{
-        try {
-            const pedido = await Pedido.findByPk(id);
-
-            if(!pedido){
-                return null;
-            }
-            return pedido;
-        } catch (error) {
-            throw error("Ocorreu um erro ao buscar pedido.");
-        }
-    },
-    getAll: async () => {
-        try {
-          return await Pedido.findAll();
-        } catch (error) {
-          throw error("Ocorreu um erro ao buscar todos.");
-        }
-      },
-      delete: async (id) => {
-        try {
-          const pedido = await Pedido.findByPk(id);
-          if (!pedido) {
-            return null;
-          }
-          await pedido.destroy();
-          return pedido;
-        } catch (error) {
-          throw error("Ocorreu um erro ao deletar pedido.");
-        }
-      },
-}
+      return pedido;
+    } catch (error) {
+      throw error("Ocorreu um erro ao buscar todos.");
+    }
+  },
+  delete: async (id) => {
+    try {
+      const pedido = await Pedido.findByPk(id);
+      if (!pedido) {
+        return null;
+      }
+      await pedido.destroy();
+      return pedido;
+    } catch (error) {
+      throw error("Ocorreu um erro ao deletar pedido.");
+    }
+  },
+};
 
 module.exports = pedidoService;
